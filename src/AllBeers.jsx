@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+import NewBeer from './NewBeer';
 
 
 export class AllBeers extends Component {
@@ -28,15 +29,21 @@ export class AllBeers extends Component {
                 <header><Link exact to="/"><span>Home</span></Link> </header>
                 <h1>ALL BEERS ! </h1>
 
+
+                <Route
+                    exact path="/beers/:id"
+                    component={NewBeer}
+                />
+
                 <ul>
                     {this.state.beers.map( (item)=>{
                         return(
                         <li> 
-                        <img src={item.image_url} alt={item.name}/>
+                        <img src={item.image_url} alt={item.name} />
                         <p>{item.name}</p>
                         <p>{item.tagline}</p>
                         <p>{item.contributed_by}</p>
-                        <a href={"/beers/"+item._id}>See more!</a>
+                        <a href={"/beers/:"+item._id}>See more!</a>
                         </li>
                         )
                        
